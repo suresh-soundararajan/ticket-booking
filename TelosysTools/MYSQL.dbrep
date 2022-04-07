@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Telosys Database Repository --><root>
+<tableList databaseId="0" databaseName="MYSQL" databaseProductName="MySQL" generation="2022-02-22 23:36:13">
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="Booking" name="booking" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="shows_id" dbNotNull="false" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="showsId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Shows id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="number_of_seats" dbNotNull="false" dbPosition="3" dbSize="10" dbTypeName="INT" inputType="number" javaName="numberOfSeats" javaType="java.lang.Integer" jdbcTypeCode="4" label="Number of seats" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="status" dbNotNull="false" dbPosition="4" dbSize="32" dbTypeName="VARCHAR" inputType="text" javaName="status" javaType="java.lang.String" jdbcTypeCode="12" label="Status" maxLength="32" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="total_amount" dbNotNull="false" dbPosition="5" dbSize="22" dbTypeName="DOUBLE" inputType="number" javaName="totalAmount" javaType="java.lang.Double" jdbcTypeCode="8" label="Total amount" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="created_by" dbNotNull="false" dbPosition="6" dbSize="10" dbTypeName="INT" inputType="number" javaName="createdBy" javaType="java.lang.Integer" jdbcTypeCode="4" label="Created by" notNull="false" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="" dbName="created_time" dbNotNull="false" dbPosition="7" dbSize="19" dbTypeName="TIMESTAMP" inputType="" javaName="createdTime" javaType="java.util.Date" jdbcTypeCode="93" label="Created time" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="updated_by" dbNotNull="false" dbPosition="8" dbSize="10" dbTypeName="INT" inputType="number" javaName="updatedBy" javaType="java.lang.Integer" jdbcTypeCode="4" label="Updated by" notNull="false" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="" dbName="updated_time" dbNotNull="false" dbPosition="9" dbSize="19" dbTypeName="TIMESTAMP" inputType="" javaName="updatedTime" javaType="java.util.Date" jdbcTypeCode="93" label="Updated time" notNull="false" selected="true"/>
+<fk name="shows_booking_fk">
+<fkcol colname="shows_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="booking" tableref="shows" updaterule="1"/>
+</fk>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="booking_shows_fk" id="LINK_FK_booking_shows_fk_I" inverseSideOf="LINK_FK_booking_shows_fk_O" javaName="listOfShowsSeats" javaType="unused" joinTableName="" mappedBy="booking" optional="" owningSide="false" sourceTableName="booking" targetEntity="ShowsSeats" targetTableName="shows_seats" used="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="booking_fk" id="LINK_FK_booking_fk_I" inverseSideOf="LINK_FK_booking_fk_O" javaName="listOfPayment" javaType="unused" joinTableName="" mappedBy="booking" optional="" owningSide="false" sourceTableName="booking" targetEntity="Payment" targetTableName="payment" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="shows_booking_fk" id="LINK_FK_shows_booking_fk_O" inverseSideOf="" javaName="shows" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="booking" targetEntity="Shows" targetTableName="shows" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="shows_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="City" name="city" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="state_id" dbNotNull="false" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="stateId" javaType="java.lang.Integer" jdbcTypeCode="4" label="State id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="name" dbNotNull="false" dbPosition="3" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="code" dbNotNull="false" dbPosition="4" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="code" javaType="java.lang.String" jdbcTypeCode="12" label="Code" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="pincode" dbNotNull="false" dbPosition="5" dbSize="10" dbTypeName="INT" inputType="number" javaName="pincode" javaType="java.lang.Integer" jdbcTypeCode="4" label="Pincode" notNull="false" selected="true"/>
+<fk name="state_fk">
+<fkcol colname="state_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="city" tableref="state" updaterule="1"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="state_fk" id="LINK_FK_state_fk_O" inverseSideOf="" javaName="state" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="city" targetEntity="State" targetTableName="state" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="state_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="city_fk" id="LINK_FK_city_fk_I" inverseSideOf="LINK_FK_city_fk_O" javaName="listOfTheatre" javaType="unused" joinTableName="" mappedBy="city" optional="" owningSide="false" sourceTableName="city" targetEntity="Theatre" targetTableName="theatre" used="true"/>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="Country" name="country" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="name" dbNotNull="false" dbPosition="2" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="code" dbNotNull="false" dbPosition="3" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="code" javaType="java.lang.String" jdbcTypeCode="12" label="Code" maxLength="200" notNull="false" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="country_foreign_key" id="LINK_FK_country_foreign_key_I" inverseSideOf="LINK_FK_country_foreign_key_O" javaName="listOfState" javaType="unused" joinTableName="" mappedBy="country" optional="" owningSide="false" sourceTableName="country" targetEntity="State" targetTableName="state" used="true"/>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="Movie" name="movie" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="name" dbNotNull="false" dbPosition="2" dbSize="400" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="400" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="about" dbNotNull="false" dbPosition="3" dbSize="800" dbTypeName="VARCHAR" inputType="text" javaName="about" javaType="java.lang.String" jdbcTypeCode="12" label="About" maxLength="800" notNull="false" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="CURRENT_TIMESTAMP" dbName="release_date" dbNotNull="true" dbPosition="4" dbSize="19" dbTypeName="TIMESTAMP" inputType="" javaName="releaseDate" javaType="java.util.Date" jdbcTypeCode="93" label="Release date" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="duration" dbNotNull="false" dbPosition="5" dbSize="10" dbTypeName="INT" inputType="number" javaName="duration" javaType="java.lang.Integer" jdbcTypeCode="4" label="Duration" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="genres" dbNotNull="false" dbPosition="6" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="genres" javaType="java.lang.String" jdbcTypeCode="12" label="Genres" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="cast" dbNotNull="false" dbPosition="7" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="cast" javaType="java.lang.String" jdbcTypeCode="12" label="Cast" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="crew" dbNotNull="false" dbPosition="8" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="crew" javaType="java.lang.String" jdbcTypeCode="12" label="Crew" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="language" dbNotNull="false" dbPosition="9" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="language" javaType="java.lang.String" jdbcTypeCode="12" label="Language" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="certificate" dbNotNull="false" dbPosition="10" dbSize="5" dbTypeName="VARCHAR" inputType="text" javaName="certificate" javaType="java.lang.String" jdbcTypeCode="12" label="Certificate" maxLength="5" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="image_url" dbNotNull="false" dbPosition="11" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="imageUrl" javaType="java.lang.String" jdbcTypeCode="12" label="Image url" maxLength="200" notNull="false" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="0000-00-00 00:00:00" dbName="created_time" dbNotNull="true" dbPosition="12" dbSize="19" dbTypeName="TIMESTAMP" inputType="" javaName="createdTime" javaType="java.util.Date" jdbcTypeCode="93" label="Created time" notNull="true" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="0000-00-00 00:00:00" dbName="updated_time" dbNotNull="true" dbPosition="13" dbSize="19" dbTypeName="TIMESTAMP" inputType="" javaName="updatedTime" javaType="java.util.Date" jdbcTypeCode="93" label="Updated time" notNull="true" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="movie_shows_fk" id="LINK_FK_movie_shows_fk_I" inverseSideOf="LINK_FK_movie_shows_fk_O" javaName="listOfShows" javaType="unused" joinTableName="" mappedBy="movie" optional="" owningSide="false" sourceTableName="movie" targetEntity="Shows" targetTableName="shows" used="true"/>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="Payment" name="payment" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="booking_id" dbNotNull="false" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="bookingId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Booking id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="amount" dbNotNull="false" dbPosition="3" dbSize="22" dbTypeName="DOUBLE" inputType="number" javaName="amount" javaType="java.lang.Double" jdbcTypeCode="8" label="Amount" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="discount_coupon" dbNotNull="false" dbPosition="4" dbSize="100" dbTypeName="VARCHAR" inputType="text" javaName="discountCoupon" javaType="java.lang.String" jdbcTypeCode="12" label="Discount coupon" maxLength="100" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="transaction_id" dbNotNull="false" dbPosition="5" dbSize="10" dbTypeName="INT" inputType="number" javaName="transactionId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Transaction id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="payment_gateway_id" dbNotNull="false" dbPosition="6" dbSize="10" dbTypeName="INT" inputType="number" javaName="paymentGatewayId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Payment gateway id" notNull="false" selected="true"/>
+<fk name="booking_fk">
+<fkcol colname="booking_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="payment" tableref="booking" updaterule="1"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="booking_fk" id="LINK_FK_booking_fk_O" inverseSideOf="" javaName="booking" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="payment" targetEntity="Booking" targetTableName="booking" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="booking_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="Preference" name="preference" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="name" dbNotNull="false" dbPosition="2" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="code" dbNotNull="false" dbPosition="3" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="code" javaType="java.lang.String" jdbcTypeCode="12" label="Code" maxLength="200" notNull="false" selected="true"/>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="Role" name="role" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="role" dbNotNull="false" dbPosition="2" dbSize="100" dbTypeName="VARCHAR" inputType="text" javaName="role" javaType="java.lang.String" jdbcTypeCode="12" label="Role" maxLength="100" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="code" dbNotNull="false" dbPosition="3" dbSize="100" dbTypeName="VARCHAR" inputType="text" javaName="code" javaType="java.lang.String" jdbcTypeCode="12" label="Code" maxLength="100" notNull="false" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="role_fk" id="LINK_FK_role_fk_I" inverseSideOf="LINK_FK_role_fk_O" javaName="listOfUser" javaType="unused" joinTableName="" mappedBy="role" optional="" owningSide="false" sourceTableName="role" targetEntity="User" targetTableName="user" used="true"/>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="Screen" name="screen" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="theatre_id" dbNotNull="false" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="theatreId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Theatre id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="name" dbNotNull="false" dbPosition="3" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="total_seats" dbNotNull="false" dbPosition="4" dbSize="10" dbTypeName="INT" inputType="number" javaName="totalSeats" javaType="java.lang.Integer" jdbcTypeCode="4" label="Total seats" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="number_of_rows" dbNotNull="false" dbPosition="5" dbSize="10" dbTypeName="INT" inputType="number" javaName="numberOfRows" javaType="java.lang.Integer" jdbcTypeCode="4" label="Number of rows" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="seats_per_row" dbNotNull="false" dbPosition="6" dbSize="10" dbTypeName="INT" inputType="number" javaName="seatsPerRow" javaType="java.lang.Integer" jdbcTypeCode="4" label="Seats per row" notNull="false" selected="true"/>
+<fk name="theatre_fk">
+<fkcol colname="theatre_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="screen" tableref="theatre" updaterule="1"/>
+</fk>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="screen_shows_fk" id="LINK_FK_screen_shows_fk_I" inverseSideOf="LINK_FK_screen_shows_fk_O" javaName="listOfShows" javaType="unused" joinTableName="" mappedBy="screen" optional="" owningSide="false" sourceTableName="screen" targetEntity="Shows" targetTableName="shows" used="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="screen_fk" id="LINK_FK_screen_fk_I" inverseSideOf="LINK_FK_screen_fk_O" javaName="listOfScreenSeats" javaType="unused" joinTableName="" mappedBy="screen" optional="" owningSide="false" sourceTableName="screen" targetEntity="ScreenSeats" targetTableName="screen_seats" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="theatre_fk" id="LINK_FK_theatre_fk_O" inverseSideOf="" javaName="theatre" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="screen" targetEntity="Theatre" targetTableName="theatre" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="theatre_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="ScreenSeats" name="screen_seats" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="screen_id" dbNotNull="false" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="screenId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Screen id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="name" dbNotNull="false" dbPosition="2" dbSize="5" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="5" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="type" dbNotNull="false" dbPosition="3" dbSize="40" dbTypeName="VARCHAR" inputType="text" javaName="type" javaType="java.lang.String" jdbcTypeCode="12" label="Type" maxLength="40" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="price" dbNotNull="false" dbPosition="4" dbSize="22" dbTypeName="DOUBLE" inputType="number" javaName="price" javaType="java.lang.Double" jdbcTypeCode="8" label="Price" notNull="false" selected="true"/>
+<fk name="screen_fk">
+<fkcol colname="screen_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="screen_seats" tableref="screen" updaterule="1"/>
+</fk>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="screen_seats_booking_fk" id="LINK_FK_screen_seats_booking_fk_I" inverseSideOf="LINK_FK_screen_seats_booking_fk_O" javaName="listOfShowsSeats" javaType="unused" joinTableName="" mappedBy="screenSeats" optional="" owningSide="false" sourceTableName="screen_seats" targetEntity="ShowsSeats" targetTableName="shows_seats" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="screen_fk" id="LINK_FK_screen_fk_O" inverseSideOf="" javaName="screen" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="screen_seats" targetEntity="Screen" targetTableName="screen" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="screen_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="Shows" name="shows" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="screen_id" dbNotNull="false" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="screenId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Screen id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="movie_id" dbNotNull="false" dbPosition="3" dbSize="10" dbTypeName="INT" inputType="number" javaName="movieId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Movie id" notNull="false" selected="true"/>
+<column dateType="D" dbComment="" dbDefaultValue="" dbName="date" dbNotNull="false" dbPosition="4" dbSize="10" dbTypeName="DATE" inputType="date" javaName="date" javaType="java.util.Date" jdbcTypeCode="91" label="Date" notNull="false" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="" dbName="show_time" dbNotNull="false" dbPosition="5" dbSize="19" dbTypeName="TIMESTAMP" inputType="" javaName="showTime" javaType="java.util.Date" jdbcTypeCode="93" label="Show time" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="total_seats" dbNotNull="false" dbPosition="6" dbSize="10" dbTypeName="INT" inputType="number" javaName="totalSeats" javaType="java.lang.Integer" jdbcTypeCode="4" label="Total seats" notNull="false" selected="true"/>
+<fk name="movie_shows_fk">
+<fkcol colname="movie_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="shows" tableref="movie" updaterule="1"/>
+</fk>
+<fk name="screen_shows_fk">
+<fkcol colname="screen_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="shows" tableref="screen" updaterule="1"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="movie_shows_fk" id="LINK_FK_movie_shows_fk_O" inverseSideOf="" javaName="movie" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="shows" targetEntity="Movie" targetTableName="movie" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="movie_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="shows_seats_fk" id="LINK_FK_shows_seats_fk_I" inverseSideOf="LINK_FK_shows_seats_fk_O" javaName="listOfShowsSeats" javaType="unused" joinTableName="" mappedBy="shows" optional="" owningSide="false" sourceTableName="shows" targetEntity="ShowsSeats" targetTableName="shows_seats" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="screen_shows_fk" id="LINK_FK_screen_shows_fk_O" inverseSideOf="" javaName="screen" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="shows" targetEntity="Screen" targetTableName="screen" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="screen_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="shows_booking_fk" id="LINK_FK_shows_booking_fk_I" inverseSideOf="LINK_FK_shows_booking_fk_O" javaName="listOfBooking" javaType="unused" joinTableName="" mappedBy="shows" optional="" owningSide="false" sourceTableName="shows" targetEntity="Booking" targetTableName="booking" used="true"/>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="ShowsSeats" name="shows_seats" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="booking_id" dbNotNull="false" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="bookingId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Booking id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="screen_seat_id" dbNotNull="false" dbPosition="3" dbSize="10" dbTypeName="INT" inputType="number" javaName="screenSeatId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Screen seat id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="shows_id" dbNotNull="false" dbPosition="4" dbSize="10" dbTypeName="INT" inputType="number" javaName="showsId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Shows id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="status" dbNotNull="false" dbPosition="5" dbSize="10" dbTypeName="VARCHAR" inputType="text" javaName="status" javaType="java.lang.String" jdbcTypeCode="12" label="Status" maxLength="10" notNull="false" selected="true"/>
+<fk name="booking_shows_fk">
+<fkcol colname="booking_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="shows_seats" tableref="booking" updaterule="1"/>
+</fk>
+<fk name="screen_seats_booking_fk">
+<fkcol colname="screen_seat_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="shows_seats" tableref="screen_seats" updaterule="1"/>
+</fk>
+<fk name="shows_seats_fk">
+<fkcol colname="shows_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="shows_seats" tableref="shows" updaterule="1"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="booking_shows_fk" id="LINK_FK_booking_shows_fk_O" inverseSideOf="" javaName="booking" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="shows_seats" targetEntity="Booking" targetTableName="booking" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="booking_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="shows_seats_fk" id="LINK_FK_shows_seats_fk_O" inverseSideOf="" javaName="shows" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="shows_seats" targetEntity="Shows" targetTableName="shows" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="shows_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="screen_seats_booking_fk" id="LINK_FK_screen_seats_booking_fk_O" inverseSideOf="" javaName="screenSeats" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="shows_seats" targetEntity="ScreenSeats" targetTableName="screen_seats" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="screen_seat_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="State" name="state" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="country_id" dbNotNull="false" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="countryId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Country id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="name" dbNotNull="false" dbPosition="3" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="code" dbNotNull="false" dbPosition="4" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="code" javaType="java.lang.String" jdbcTypeCode="12" label="Code" maxLength="200" notNull="false" selected="true"/>
+<fk name="country_foreign_key">
+<fkcol colname="country_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="state" tableref="country" updaterule="1"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="country_foreign_key" id="LINK_FK_country_foreign_key_O" inverseSideOf="" javaName="country" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="state" targetEntity="Country" targetTableName="country" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="country_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="state_fk" id="LINK_FK_state_fk_I" inverseSideOf="LINK_FK_state_fk_O" javaName="listOfCity" javaType="unused" joinTableName="" mappedBy="state" optional="" owningSide="false" sourceTableName="state" targetEntity="City" targetTableName="city" used="true"/>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="Theatre" name="theatre" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="city_id" dbNotNull="false" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="cityId" javaType="java.lang.Integer" jdbcTypeCode="4" label="City id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="user_id" dbNotNull="false" dbPosition="3" dbSize="10" dbTypeName="INT" inputType="text" javaName="userId" javaType="java.lang.String" jdbcTypeCode="4" label="User id" maxLength="4" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="name" dbNotNull="false" dbPosition="4" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="address" dbNotNull="false" dbPosition="5" dbSize="400" dbTypeName="VARCHAR" inputType="text" javaName="address" javaType="java.lang.String" jdbcTypeCode="12" label="Address" maxLength="400" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="landmark" dbNotNull="false" dbPosition="6" dbSize="400" dbTypeName="VARCHAR" inputType="text" javaName="landmark" javaType="java.lang.String" jdbcTypeCode="12" label="Landmark" maxLength="400" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="pincode" dbNotNull="false" dbPosition="7" dbSize="6" dbTypeName="VARCHAR" inputType="text" javaName="pincode" javaType="java.lang.String" jdbcTypeCode="12" label="Pincode" maxLength="6" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="map_coordinates" dbNotNull="false" dbPosition="8" dbSize="100" dbTypeName="VARCHAR" inputType="text" javaName="mapCoordinates" javaType="java.lang.String" jdbcTypeCode="12" label="Map coordinates" maxLength="100" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="screen_count" dbNotNull="false" dbPosition="9" dbSize="10" dbTypeName="INT" inputType="number" javaName="screenCount" javaType="java.lang.Integer" jdbcTypeCode="4" label="Screen count" notNull="false" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="" dbName="created_time" dbNotNull="false" dbPosition="10" dbSize="19" dbTypeName="TIMESTAMP" inputType="" javaName="createdTime" javaType="java.util.Date" jdbcTypeCode="93" label="Created time" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="created_by" dbNotNull="false" dbPosition="11" dbSize="10" dbTypeName="INT" inputType="number" javaName="createdBy" javaType="java.lang.Integer" jdbcTypeCode="4" label="Created by" notNull="false" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="" dbName="updated_time" dbNotNull="false" dbPosition="12" dbSize="19" dbTypeName="TIMESTAMP" inputType="" javaName="updatedTime" javaType="java.util.Date" jdbcTypeCode="93" label="Updated time" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="updated_by" dbNotNull="false" dbPosition="13" dbSize="10" dbTypeName="INT" inputType="number" javaName="updatedBy" javaType="java.lang.Integer" jdbcTypeCode="4" label="Updated by" notNull="false" selected="true"/>
+<fk name="city_fk">
+<fkcol colname="city_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="theatre" tableref="city" updaterule="1"/>
+</fk>
+<fk name="user_fk">
+<fkcol colname="user_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="theatre" tableref="user" updaterule="1"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="user_fk" id="LINK_FK_user_fk_O" inverseSideOf="" javaName="user" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="theatre" targetEntity="User" targetTableName="user" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="user_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="theatre_fk" id="LINK_FK_theatre_fk_I" inverseSideOf="LINK_FK_theatre_fk_O" javaName="listOfScreen" javaType="unused" joinTableName="" mappedBy="theatre" optional="" owningSide="false" sourceTableName="theatre" targetEntity="Screen" targetTableName="screen" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="city_fk" id="LINK_FK_city_fk_O" inverseSideOf="" javaName="city" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="theatre" targetEntity="City" targetTableName="city" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="city_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="ticket_booking_system" databaseComment="" databaseType="TABLE" javaBean="User" name="user" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="role_id" dbNotNull="false" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="roleId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Role id" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="username" dbNotNull="false" dbPosition="3" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="username" javaType="java.lang.String" jdbcTypeCode="12" label="Username" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="password" dbNotNull="false" dbPosition="4" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="password" javaType="java.lang.String" jdbcTypeCode="12" label="Password" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="display_name" dbNotNull="false" dbPosition="5" dbSize="200" dbTypeName="VARCHAR" inputType="text" javaName="displayName" javaType="java.lang.String" jdbcTypeCode="12" label="Display name" maxLength="200" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="email_id" dbNotNull="false" dbPosition="6" dbSize="60" dbTypeName="VARCHAR" inputType="text" javaName="emailId" javaType="java.lang.String" jdbcTypeCode="12" label="Email id" maxLength="60" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="country_code" dbNotNull="false" dbPosition="7" dbSize="5" dbTypeName="VARCHAR" inputType="text" javaName="countryCode" javaType="java.lang.String" jdbcTypeCode="12" label="Country code" maxLength="5" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="mobile" dbNotNull="false" dbPosition="8" dbSize="10" dbTypeName="VARCHAR" inputType="text" javaName="mobile" javaType="java.lang.String" jdbcTypeCode="12" label="Mobile" maxLength="10" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="mfa" dbNotNull="false" dbPosition="9" dbSize="1" dbTypeName="BIT" inputType="checkbox" javaName="mfa" javaType="java.lang.Boolean" jdbcTypeCode="-7" label="Mfa" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="is_active" dbNotNull="false" dbPosition="10" dbSize="1" dbTypeName="BIT" inputType="checkbox" javaName="isActive" javaType="java.lang.Boolean" jdbcTypeCode="-7" label="Is active" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="is_locked" dbNotNull="false" dbPosition="11" dbSize="1" dbTypeName="BIT" inputType="checkbox" javaName="isLocked" javaType="java.lang.Boolean" jdbcTypeCode="-7" label="Is locked" notNull="false" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="CURRENT_TIMESTAMP" dbName="created_time" dbNotNull="false" dbPosition="12" dbSize="19" dbTypeName="TIMESTAMP" inputType="" javaName="createdTime" javaType="java.util.Date" jdbcTypeCode="93" label="Created time" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="created_by" dbNotNull="false" dbPosition="13" dbSize="10" dbTypeName="INT" inputType="number" javaName="createdBy" javaType="java.lang.Integer" jdbcTypeCode="4" label="Created by" notNull="false" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="0000-00-00 00:00:00" dbName="updated_time" dbNotNull="false" dbPosition="14" dbSize="19" dbTypeName="TIMESTAMP" inputType="" javaName="updatedTime" javaType="java.util.Date" jdbcTypeCode="93" label="Updated time" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="updated_by" dbNotNull="false" dbPosition="15" dbSize="10" dbTypeName="INT" inputType="number" javaName="updatedBy" javaType="java.lang.Integer" jdbcTypeCode="4" label="Updated by" notNull="false" selected="true"/>
+<fk name="role_fk">
+<fkcol colname="role_id" colref="id" deferrable="7" deleterule="1" sequence="1" tablename="user" tableref="role" updaterule="1"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="role_fk" id="LINK_FK_role_fk_O" inverseSideOf="" javaName="role" javaType="unused" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="user" targetEntity="Role" targetTableName="role" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="role_id" nullable="true" referencedColumnName="id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="user_fk" id="LINK_FK_user_fk_I" inverseSideOf="LINK_FK_user_fk_O" javaName="listOfTheatre" javaType="unused" joinTableName="" mappedBy="user" optional="" owningSide="false" sourceTableName="user" targetEntity="Theatre" targetTableName="theatre" used="true"/>
+</table>
+</tableList>
+</root>
